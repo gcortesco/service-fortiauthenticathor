@@ -1,0 +1,16 @@
+server: 
+  port: 8081
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        opaquetoken:
+          introspection-uri: https://doblefactor.riu.net/api/v1/oauth/verify_token/?client_id=
+          client-id: 6bMDbv5yVvpn1Y3AbNl4GFrm10ER7U3qX8oFNNLw
+          client-secret: cJ21o1MhDt7VZsJQ4qq6z4klA2or0eQilhALGcW8vtvc0eEiXr8os2I5COxDqB9bnWro5TniQ5OZWLpZOroZyxSkqseoiP4IDiA3rwbTx3PyJUBlOW4hkEadxZjjhyze
+
+logging:
+  level:
+    root: INFO
+
