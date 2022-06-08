@@ -4,6 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -18,6 +19,9 @@ public class AuthFilter extends AbstractAuthenticationProcessingFilter {
 
 	public static final String TOKEN_HEADER = "Authorization";
 	public static final String CLIENT_ID_HEADER = "client_id";
+
+	@Value("${spring.security.oauth2.resourceserver.opaquetoken.client-id}")
+	private static final String clientID="6bMDbv5yVvpn1Y3AbNl4GFrm10ER7U3qX8oFNNLw";
 
 
 	public AuthFilter(RequestMatcher requestMatcher) {
@@ -62,6 +66,6 @@ public class AuthFilter extends AbstractAuthenticationProcessingFilter {
 				  .filter(header -> header.equalsIgnoreCase(CLIENT_ID_HEADER))
 				  .map(header -> req.getHeader(header))
 				  .findFirst()
-				  .orElse(null);
+				  .orElse(clientID);
 	}
 }

@@ -37,10 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected AbstractAuthenticationProcessingFilter createCustomFilter() throws Exception {
 		AuthFilter filter = new AuthFilter(
 				new AndRequestMatcher(
-						new AntPathRequestMatcher("/secured/**")
-			//	new NegatedRequestMatcher(new AntPathRequestMatcher("/actuator"))
-			//	,new NegatedRequestMatcher(new AntPathRequestMatcher("/reservations"))
-		  )
+						new AntPathRequestMatcher("/secured/**"))
 		);
 		filter.setAuthenticationManager(authenticationManagerBean());
 		return filter;

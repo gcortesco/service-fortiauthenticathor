@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,16 +40,19 @@ public class SecuredUserController implements UserApi {
     }
 
     @Override
+    @GetMapping("/all")
     public List<UserDto> getAllUsers() {
         return userService.getAllUsers().stream().map(mapper::convert).collect(Collectors.toList());
     }
 
     @Override
+    @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserByUsername(String username) {
         return ResponseEntity.of(userService.getByUsername(username).map(mapper::convert));
     }
 
     @Override
+    @GetMapping("/save")
     public ResponseEntity<UserDto> saveUser(UserDto userDTO) {
         User user = mapper.convert(userDTO);
         return ResponseEntity.of(userService.saveUser(user).map(mapper::convert));
