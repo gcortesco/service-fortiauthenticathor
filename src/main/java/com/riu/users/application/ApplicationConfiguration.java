@@ -34,8 +34,7 @@ public class ApplicationConfiguration {
     public OpenAPI openAPI() {
         return new OpenAPI()
                 .components(new Components()
-                        .addSecuritySchemes("FortiAuthenticator",new SecurityScheme().type(SecurityScheme.Type.APIKEY).in(SecurityScheme.In.HEADER).name("client-id"))
-                        .addSecuritySchemes("FortiAuthenticator2",new SecurityScheme().type(SecurityScheme.Type.HTTP).in(SecurityScheme.In.HEADER).name("token").scheme("bearer"))
+                        .addSecuritySchemes("FortiAuthenticator",new SecurityScheme().type(SecurityScheme.Type.HTTP).in(SecurityScheme.In.HEADER).name("token").scheme("bearer"))
                 );
     }
 }
