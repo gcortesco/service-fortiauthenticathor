@@ -20,30 +20,29 @@ public class AuthProvider implements AuthenticationProvider {
 	private static final Logger LOGGER =  LoggerFactory.getLogger(AuthProvider.class);
 
 	private String authURL;
-	//private String clientID;
 
-	public AuthProvider(String authURL, String clientID) {
+
+	public AuthProvider(String authURL) {
 		this.authURL = authURL;
-		//this.clientID = clientID;
+
 	}
 
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 		final AuthenticationToken tokenContainer = (AuthenticationToken) auth;
 		final String token = tokenContainer.getToken();
-		final String clientID = tokenContainer.getClientId();
-		if (verifyToken(token,clientID))
+		if (verifyToken(token))
 			return auth;
 		return null;
 	}
 
-	private Boolean verifyToken(String token,String clientID) {
+	private Boolean verifyToken(String token) {
 		RestTemplate restTemplate = (new RestTemplateBuilder()).defaultHeader("Authorization", token)
 				.setConnectTimeout(Duration.ofMillis(3000L)).build();
 		try {
 			LOGGER.debug("DEBUG VALIDATE TOKEN");
 			LOGGER.debug(token);
-			ResponseEntity<String> response = restTemplate.getForEntity(authURL + clientID, String.class);
+			ResponseEntity<String> response = restTemplate.getForEntity(authURL, String.class);
 			LOGGER.debug(response.toString());
 			return response.getStatusCode().is2xxSuccessful();
 		} catch (Exception e) {

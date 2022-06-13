@@ -21,8 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Value("${spring.security.oauth2.resourceserver.opaquetoken.introspection-uri}")
 	private String authURL;
-	@Value("${spring.security.oauth2.resourceserver.opaquetoken.client-id}")
-	private String clientID;
+
 	
 
 	@Override
@@ -45,6 +44,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public AuthenticationProvider createCustomAuthenticationProvider() {
-		return new AuthProvider(authURL,clientID);
+		return new AuthProvider(authURL);
 	}
 }

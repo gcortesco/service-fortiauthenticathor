@@ -5,12 +5,10 @@ import org.springframework.security.authentication.AbstractAuthenticationToken;
 public class AuthenticationToken extends AbstractAuthenticationToken {
 	private static final long serialVersionUID = 1L;
 	private final String token;
-	private final String clientId;
 
-	public AuthenticationToken(String token,String clientId) {
+	public AuthenticationToken(String token) {
 		super(null);
 		this.token = token;
-		this.clientId = clientId;
 		setAuthenticated(true);
 	}
 
@@ -30,9 +28,7 @@ public class AuthenticationToken extends AbstractAuthenticationToken {
 	}
 
 
-	public String getClientId() {
-		return clientId;
-	}
+
 	
 	
 
